@@ -76,35 +76,6 @@ def upload_image():
    })
 
 
-@app.route('/delete/<int:id>', methods=['POST'])
-def delete_record(id):
-    # Conectar ao banco de dados
-    with sqlite3.connect(DB_PATH) as conn:
-        cursor = conn.cursor()
-
-        # Buscar o caminho das imagens do registro
-        cursor.execute("SELECT image, image_proc FROM registros WHERE id = ?", (id,))
-        record = cursor.fetchone()
-
-        if record:
-            original_img_path, processed_img_path = record
-
-            # Remover os arquivos de imagem
-            try:
-                os.remove(os.path.join(UPLOAD_FOLDER, original_img_path.split('/')[-1]))
-                os.remove(os.path.join(UPLOAD_FOLDER, processed_img_path.split('/')[-1]))
-            except FileNotFoundError:
-                return jsonify({"error": "Arquivo não encontrado."}), 404
-
-            # Excluir o registro do banco de dados
-            cursor.execute("DELETE FROM registros WHERE id = ?", (id,))
-            conn.commit()
-
-            return redirect(url_for('home'))  # Redireciona para a página principal após excluir
-        else:
-            return jsonify({"error": "Registro não encontrado."}), 404
-
-
 @app.route('/registros', methods=['GET'])
 def get_registros():
     with sqlite3.connect(DB_PATH) as conn:
@@ -112,13 +83,13 @@ def get_registros():
         cursor.execute("SELECT id, datetime, image, image_proc, ip FROM registros")
         registros = cursor.fetchall()
     
-    # Estrutura os registros em um formato JSON-friendly
     registros_lista = [
         {"id": row[0], "datetime": row[1], "image": row[2], "image_proc": row[3], "ip": row[4]}
         for row in registros
     ]
     
     return jsonify(registros_lista)
+
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', debug=True)
