@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trilha Cloud</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Aplicação em nuvem com flask - Trilha Cloud</h1>
+        <input type="file" id="imageInput" accept="image/*">
+
+        <div class="image-preview" id="imagePreview">
+            <div class="image-box" id="originalImageBox">
+                <img id="originalImage" alt="Imagem Original">
+            </div>
+            <div class="image-box-response" id="responseImageBox">
+                <img id="responseImage" alt="Imagem Resposta">
+            </div>
+        </div>
+
+        <button id="sendButton" style="display: none;">Enviar</button>
+
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>Data/Hora</th>
+                    <th>Imagem</th>
+                    <th>Imagem Processada</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As linhas serão adicionadas aqui -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="static/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+# Ambiente virtual
+venv/
+.env
+*.env
+
+# Configuração de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+*.out
+*.err
+
+# Arquivos de uploads temporários
+app/static/uploads/*
+!app/static/uploads/.keep  # Mantém o diretório vazio no repositório
+
+# Configurações do editor/IDE
+.vscode/
+.idea/
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+# Docker
+*.log
+docker-compose.override.yml
+database/trilha_cloud.db
+database/*.db
+
+# Arquivos de dependências
+Pipfile
+Pipfile.lock
+requirements.txt.bak
+
+# Arquivos de pacotes do sistema
+.DS_Store
+Thumbs.db
+
+# Testes
+.coverage
+nosetests.xml
+test-results/
